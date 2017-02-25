@@ -1,23 +1,23 @@
 {
   "manifest_version": 2,
 
-  "name": "Getting started example",
-  "description": "This extension shows a Google Image search result for the current page",
+  "name": "SO Counter",
+  "description": "Counts how many times you visit Stack Overflow",
   "version": "1.0",
 
   "background": {
     "persistent":false,
-    "scripts": ["backScript.js"]
+    "page": "ui_idk.html"
   },
 
   "browser_action": {
-    "default_icon": "icon.png",
+    "default_icon": "./img/i++.png",
     "default_popup": "popup.html"
   },
   "content_scripts": [
     {
-      "matches" : "http://*/*",
-      "js": "contentScript.js"
+      "matches" : ["http://*/*"],
+      "js": ["contentScript.js"]
     }
   ],
 
