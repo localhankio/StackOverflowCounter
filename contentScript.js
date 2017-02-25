@@ -10,35 +10,45 @@ var user = "http://stackoverflow.com/";
 chrome.tabs.getSelected(null,function(tab) {
 	var url = tab.url; 
 });*/
-
-url = "http://stackoverflow.com/questions/42459444/difference-between-i-i-and-i-i-1"
-//this should compare to see if the users input is contained in the current url
-if(url.indexOf(user) > -1){
-//if what the user is looking for is found in the url increment the count
-	count++;
-	console.log(count);
-}
-<<<<<<< HEAD
-
-chrome.runtime.sendMessage({visitCount: count}, function(response) {
-  console.log("farewell is " + response.farewell);
+chrome.storage.sync.get(["visitCount"], function(items){
+			console.log("retrieved count = ", items.visitCount);
+			count = items.visitCount +1;
+			console.log("new count = " + count);
+			updateCount(count);
 });
 
-try{
-	chrome.storage.sync.get(["visitCount"], function(items){
-		console.log("retrieved", items)
-	});
-	
-	
-} catch (err){
-	chrome.storage.sync.set({visitCount:count}, function () {
-		console.log("saved, " + count);
+function updateCount(currCount){
+	chrome.storage.sync.set({visitCount : count}, function(){
+		console.log("set item is " + count);
 	});
 }
+var soRegex = new RegExp("[http|https]://stackoverflow.com/*");
+if(soRegex.test(url)){
+	console.log("danny is a BITCH ");
+}
+else{
+	console.log("not a bitch ");
+}
+console.log(window.location.href);
+url = window.location.href;
+/*chrome.tabs.getCurrent(function(tab){
+	console.log(tab);
+});
 
-chrome.storage.sync.get(["visitCount"], function(items){
-		console.log("retrieved", items)
-	});
+var fourmTabs = new Array();
+chrome.tabs.query({}, function (tabs) {
+    for (var i = 0; i < tabs.length; i++) {
+        fourmTabs[i] = tabs[i];
+    }
+    // Moved code inside the callback handler
+    for (var i = 0; i < fourmTabs.length; i++) {
+        if (fourmTabs[i] != null)
+           window.console.log(fourmTabs[i].url);
+        else {
+            window.console.log("??" + i);
+        }
+    }
+});*/
 
     
 /*    // Save it using the Chrome extension storage API.
@@ -46,5 +56,3 @@ chrome.storage.sync.set({'soCount': data}, function() {
   // Notify that we saved.
   message('Settings saved');
 });*/
-=======
->>>>>>> 0aac5da8c30db6003aca1dbb0b353ad3b5ec54c4
