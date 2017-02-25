@@ -18,6 +18,7 @@ if(url.indexOf(user) > -1){
 	count++;
 	console.log(count);
 }
+<<<<<<< HEAD
 
 chrome.runtime.sendMessage({visitCount: count}, function(response) {
   console.log("farewell is " + response.farewell);
@@ -45,3 +46,5 @@ chrome.storage.sync.set({'soCount': data}, function() {
   // Notify that we saved.
   message('Settings saved');
 });*/
+=======
+>>>>>>> 0aac5da8c30db6003aca1dbb0b353ad3b5ec54c4
