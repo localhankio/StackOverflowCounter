@@ -22,7 +22,7 @@ function updateCount(currCount){
 		console.log("set item is " + count);
 	});
 }
-var soRegex = new RegExp("[http|https]://stackoverflow.com/*");
+var soRegex = new RegExp("http://stackoverflow.com/*");
 if(soRegex.test(url)){
 	console.log("danny is a BITCH ");
 }
