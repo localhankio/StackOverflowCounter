@@ -25,4 +25,9 @@
     "activeTab",
     "https://ajax.googleapis.com/"
   ]
+  
+  "externally_connectable": {
+  "matches": ["*://*.example.com/*"]
+}
+  
 }
