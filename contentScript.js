@@ -11,7 +11,7 @@ chrome.tabs.getSelected(null,function(tab) {
 	var url = tab.url; 
 });*/
 
-url = "http://stackoverflow.com/questions/42459444/difference-between-i-i-and-i-i-1"
+url = "http://stackoverflow.com/"
 //this should compare to see if the users input is contained in the current url
 if(url.indexOf(user) > -1){
 //if what the user is looking for is found in the url increment the count
