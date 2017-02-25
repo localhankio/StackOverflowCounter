@@ -17,7 +17,3 @@ if(url.indexOf(user) > -1){
 	count++;
 	console.log(count);
 }
-
-chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
-  console.log("farewell is " + response.farewell);
-});
