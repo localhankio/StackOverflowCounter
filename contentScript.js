@@ -11,11 +11,12 @@ chrome.tabs.getSelected(null,function(tab) {
 	var url = tab.url; 
 });*/
 chrome.storage.sync.get(["visitCount"], function(items){
-			console.log("retrieved count = ", items.visitCount);
-			count = items.visitCount +1;
-			console.log("new count = " + count);
-			updateCount(count);
+	console.log("retrieved count = ", items.visitCount);
+	count = items.visitCount +1;
+	console.log("new count = " + count);
+	updateCount(count);
 });
+
 
 function updateCount(currCount){
 	chrome.storage.sync.set({visitCount : count}, function(){
