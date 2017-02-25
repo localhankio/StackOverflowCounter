@@ -1,6 +1,6 @@
-Var count = 0;
-Var url = “”;
-Var user = “stackoverflow.com”;
+var count = 0;
+var url = “”;
+var user = “stackoverflow.com”;
 
 /*//permission to play with tabs
 "permissions": [ "tabs" ]
