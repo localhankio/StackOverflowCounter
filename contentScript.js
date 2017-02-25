@@ -1,6 +1,7 @@
 var count = 0;
+count++;
 var url = "";
-
+var user = "http://stackoverflow.com/";
 
 /*//permission to play with tabs
 "permissions": [ "tabs" ]
@@ -18,6 +19,29 @@ if(url.indexOf(user) > -1){
 	console.log(count);
 }
 
-chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
+chrome.runtime.sendMessage({visitCount: count}, function(response) {
   console.log("farewell is " + response.farewell);
 });
+
+try{
+	chrome.storage.sync.get(["visitCount"], function(items){
+		console.log("retrieved", items)
+	});
+	
+	
+} catch (err){
+	chrome.storage.sync.set({visitCount:count}, function () {
+		console.log("saved, " + count);
+	});
+}
+
+chrome.storage.sync.get(["visitCount"], function(items){
+		console.log("retrieved", items)
+	});
+
+    
+/*    // Save it using the Chrome extension storage API.
+chrome.storage.sync.set({'soCount': data}, function() {
+  // Notify that we saved.
+  message('Settings saved');
+});*/
