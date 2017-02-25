@@ -1,6 +1,6 @@
-Var count = 0;
-Var url = “”;
-Var user = “stackoverflow.com”;
+var count = 0;
+var url = "";
+var user = "stackoverflow.com";
 
 /*//permission to play with tabs
 "permissions": [ "tabs" ]
@@ -15,5 +15,9 @@ url = "http://stackoverflow.com/questions/42459444/difference-between-i-i-and-i-
 if(url.indexOf(user) > -1){
 //if what the user is looking for is found in the url increment the count
 	count++;
-	consolelog(count);
+	console.log(count);
 }
+
+chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
+  console.log("farewell is " + response.farewell);
+});
