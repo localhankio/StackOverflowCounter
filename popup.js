@@ -26,10 +26,10 @@ function clearCounter(){
 }
 
 function displayCount(count){
+	console.log(count);
 	document.getElementById('count').innerHTML = "You visited SO " + count;
 }
 
 var someCount = chrome.extension.getBackgroundPage();
 soCount=someCount.getSOCount();
-//alert(someCount.getSOCount());
 displayCount(soCount);

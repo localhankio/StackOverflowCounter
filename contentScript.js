@@ -9,9 +9,13 @@ console.log(domain);
 var count = 1;
 //updateCount(0);
 if (domain == "stackoverflow.com"){
-	console.log("is at stackoverflow")
+	console.log("is at stackoverflow");
 	chrome.storage.sync.get(["visitCount"], function(items){
 		console.log("retrieved count = " + items.visitCount);
+		if (!items.visitCount){
+			chrome.storage.sync.set({"visitCount": 0});
+			return;
+		}
 		//var inc = items.visitCount+1;
 		count = items.visitCount+1;
 
@@ -23,7 +27,7 @@ if (domain == "stackoverflow.com"){
 //clear counter 
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse){
-		if (request.clear){
+		if (request.clear==true){
 			chrome.storage.sync.get("visitCount", function(item){
 				chrome.storage.sync.set({"visitCount": 0}, function(){
 					console.log("reset counter");
