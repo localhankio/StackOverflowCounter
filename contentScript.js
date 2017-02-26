@@ -1,5 +1,5 @@
-var count = 0;
-count++;
+var count = 1;
+
 var url = "";
 var user = "http://stackoverflow.com/";
 
