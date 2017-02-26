@@ -23,7 +23,7 @@ chrome.runtime.onMessage.addListener(
 
 
 console.log("something " + soCount);
-document.getElementById('count').innerHTML = "visted amount: " + soCount;
+//document.getElementById('count').innerHTML = "visted amount: " + soCount;
 chrome.storage.sync.get(["soCount"], function (itmes) {
 	console.log("retrieved", items)
 })
