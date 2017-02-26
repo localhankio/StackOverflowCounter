@@ -17,6 +17,7 @@ function getSOCount(){
 	return soCount;
 }
 
+
 function clearCounter(){
 	chrome.runtime.sendMessage({"clear": true}, function(response){
 		console.log(response);

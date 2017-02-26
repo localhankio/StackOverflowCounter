@@ -1,5 +1,7 @@
 var count = 1;
 
+var url = "";
+
 var user = "http://stackoverflow.com/";
 
 console.log(window.location.href);
@@ -157,16 +159,10 @@ function DomainObj(domainName, numVisits) {
 	this.numVisits = numVisits; 
 }
 
+console.log(window.location.href);
+url = window.location.href;
 
-
-chrome.storage.sync.clear(function(){
-	console.log("everything cleared");
-});
-
-
-
-
-
+document.getElementById('count').innerHTML = user + " visted amount: " + count;
 /*chrome.tabs.getCurrent(function(tab){
 	console.log(tab);;
 });
