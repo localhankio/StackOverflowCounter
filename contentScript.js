@@ -20,6 +20,21 @@ if (domain == "stackoverflow.com"){
 	
 }
 
+//clear counter 
+chrome.runtime.onMessage.addListener(
+	function(request, sender, sendResponse){
+		if (request.clear){
+			chrome.storage.sync.get("visitCount", function(item){
+				chrome.storage.sync.set({"visitCount": 0}, function(){
+					console.log("reset counter");
+				});
+				console.log("reset counter");
+			});
+		}
+		sendResponse({"byeee": true});
+
+})
+
 function updateCount(currCount){
 	chrome.storage.sync.set({"visitCount" : currCount}, function(){
 		console.log("set item is " + currCount);
@@ -45,8 +60,7 @@ function gotPopup(popupURL) {
   console.log(popupURL)
 }
 
-var gettingPopup = chrome.browserAction.getPopup({});
-gettingPopup.then(gotPopup);
+
 /*chrome.tabs.getCurrent(function(tab){
 	console.log(tab);
 });

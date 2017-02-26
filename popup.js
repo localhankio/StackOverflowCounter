@@ -19,6 +19,11 @@ var temp = "";
 	//console.log(temp);
 	displayCount(temp.visitCount);
 });*/
+function clearCounter(){
+	var back = chrome.extension.getBackgroundPage();
+	soCount = back.clearCounter();
+	displayCount(soCount);
+}
 
 function displayCount(count){
 	document.getElementById('count').innerHTML = "You visited SO " + count;
