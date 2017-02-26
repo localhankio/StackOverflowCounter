@@ -12,20 +12,39 @@ Date:2/25/17
 <title>Popup Page</title>
 <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 	<style>
-		h3{
-			float: left;
+		#logo{
+			clear:both;
+    		padding: 1px;
+    		border: 1px;
+    		margin: 1px
+			width: 48px;
+			height: 48px;
+		}
+		#count{
+			text-align: left;
 			font-family: 'Indie Flower', cursive;
 			color: #96d4c3;
 		}
 		body{
 			min-width:300px;
+			min-height:150px;
 			background-color:#888888;
+		}
+		form{
+			font-family: 'Indie Flower', cursive;
+			font-size: 20px;
+			color: #96d4c3;
 		}
 	</style>
 </head>
 
 <body>
-	<h3>You have visited websites</h3>
+		<img id = "logo" src = "img/i++(1).png" alt = "logo">
+		<form action="/action_page.php">
+  			URL: <input type="text" name="fname">
+		</form>
+		<h3 id ="count"></h3>
+		
+		<script src="contentScript.js"></script>
 </body>
-
 </html>
