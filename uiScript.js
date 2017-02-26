@@ -39,5 +39,17 @@ chrome.tabs.onCreated.addListener(function(tab){
 				alert("Cleaned up a tab! You're Welcome!")
 			})
 		}
+		
+		if(tabs.length == 5)
+		{alert("Congrats! You have 5 tabs open!");}
+	
+		if(tabs.length == 20)
+		{alert("AYYYY 20 TABS");}
+	
+		if(tabs.length == 50)
+		{alert("Uh oh... 50")}
+	
+		if(tabs.length == 100)
+		{alert("You seem to be really good with your fingers...");}
 	});
 });
