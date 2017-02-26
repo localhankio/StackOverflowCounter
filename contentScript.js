@@ -32,6 +32,8 @@ else{
 }
 console.log(window.location.href);
 url = window.location.href;
+
+document.getElementById('count').innerHTML = user + " visted amount: " + count;
 /*chrome.tabs.getCurrent(function(tab){
 	console.log(tab);
 });
