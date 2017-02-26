@@ -1,39 +1,156 @@
-var count = 0;
-count++;
-var url = "";
+var count = 1;
+
 var user = "http://stackoverflow.com/";
 
-/*//permission to play with tabs
-"permissions": [ "tabs" ]
+console.log(window.location.href);
+var url = window.location.href;
+var domain = extractDomain(url);
+console.log(domain);
+var count = 1;
+//updateCount(0);
+if (domain == "stackoverflow.com"){
+	console.log("is at stackoverflow")
+	chrome.storage.sync.get(["visitCount"], function(items){
+		console.log("retrieved count = " + items.visitCount);
+		//var inc = items.visitCount+1;
+		count = items.visitCount+1;
 
-//get url and store that jawn in yo variable
-chrome.tabs.getSelected(null,function(tab) {
-	var url = tab.url; 
+		updateCount(count);
+	});
+	
+}
+
+function updateCount(currCount){
+	chrome.storage.sync.set({"visitCount" : currCount}, function(){
+		console.log("set item is " + currCount);
+		chrome.runtime.sendMessage({"visitCount": currCount}, function(response){
+			console.log(response);
+		});
+	});
+}	
+
+function extractDomain(url) {
+	var domain;
+	if (url.indexOf("://") > -1){
+		domain = url.split("/")[2];
+	}
+	else {
+		domain = url.split("/")[0];
+	}
+	domain = domain.split(":")[0];
+	return domain; 
+}
+
+function gotPopup(popupURL) {
+  console.log(popupURL)
+}
+
+var gettingPopup = chrome.browserAction.getPopup({});
+gettingPopup.then(gotPopup);
+/*chrome.tabs.getCurrent(function(tab){
+	console.log(tab);
+});
+var fourmTabs = new Array();
+chrome.tabs.query({}, function (tabs) {
+    for (var i = 0; i < tabs.length; i++) {
+        fourmTabs[i] = tabs[i];
+    }
+    // Moved code inside the callback handler
+    for (var i = 0; i < fourmTabs.length; i++) {
+        if (fourmTabs[i] != null)
+           window.console.log(fourmTabs[i].url);
+        else {
+            window.console.log("??" + i);
+        }
+    }
 });*/
-chrome.storage.sync.get(["visitCount"], function(items){
-	console.log("retrieved count = ", items.visitCount);
-	count = items.visitCount +1;
-	console.log("new count = " + count);
-	updateCount(count);
+
+    
+/*    // Save it using the Chrome extension storage API.
+chrome.storage.sync.set({'soCount': data}, function() {
+  // Notify that we saved.
+  message('Settings saved');
+});*/
+
+
+
+
+/*var count = 0;
+count++;
+var url = "";
+
+var db = new PouchDB("cats");
+url = window.location.href;
+
+var domainName = extractDomain(url);
+console.log("Current domain is " + domainName);
+console.log(typeof domainName);
+//domainObj = getCount(domainName);
+//updateCount(domainName, 0);
+chrome.storage.sync.get(domainName, function(obj){
+	console.log("from somewhere: ")
+	console.log(obj);
+	var domainCount = obj.domString.numVisits + 1;
+	updateCount(obj.domString.domainName, domainCount);
+});
+
+console.log("***using getCount ***");
+getCount(domainName);
+
+
+function getCount(someDomain){
+	console.log("\t" + someDomain);
+	chrome.storage.sync.get(someDomain, function(items){
+		if (!chrome.runtime.error){
+			console.log(someDomain);
+			console.log(someDomain, items);
+		}
+		else 
+			console.log("there was error ");
+	})
+}
+
+function updateCount(someDomain, currCount){
+	var domString = someDomain;
+	var updatedDomInfo = new DomainObj(someDomain, currCount);
+	chrome.storage.sync.set({
+		domString: updatedDomInfo
+	}, function(){
+		console.log("dom string ");
+		console.log(domString);
+		console.log(updatedDomInfo);
+	});
+}
+
+function extractDomain(url) {
+	var domain;
+	if (url.indexOf("://") > -1){
+		domain = url.split("/")[2];
+	}
+	else {
+		domain = url.split("/")[0];
+	}
+	domain = domain.split(":")[0];
+	return domain; 
+}
+
+function DomainObj(domainName, numVisits) {
+	this.domainName = domainName;
+	this.numVisits = numVisits; 
+}
+
+
+
+chrome.storage.sync.clear(function(){
+	console.log("everything cleared");
 });
 
 
-function updateCount(currCount){
-	chrome.storage.sync.set({visitCount : count}, function(){
-		console.log("set item is " + count);
-	});
-}
-var soRegex = new RegExp("http://stackoverflow.com/*");
-if(soRegex.test(url)){
-	console.log("danny is a BITCH ");
-}
-else{
-	console.log("not a bitch ");
-}
-console.log(window.location.href);
-url = window.location.href;
+
+
+
 /*chrome.tabs.getCurrent(function(tab){
-	console.log(tab);
+	console.log(tab);;
 });
 
 var fourmTabs = new Array();
@@ -56,4 +173,5 @@ chrome.tabs.query({}, function (tabs) {
 chrome.storage.sync.set({'soCount': data}, function() {
   // Notify that we saved.
   message('Settings saved');
-});*/
+});
+*/
